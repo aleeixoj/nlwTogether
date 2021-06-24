@@ -34,20 +34,23 @@ export function AppoitmentCreate(): JSX.Element {
   function handleOpenModal() {
     setModal(true);
   }
+  function handleCloseModal() {
+    setModal(false);
+  }
   function handleGuildSelect(guildSelect: GuildProps) {
     setGuild(guildSelect);
     setModal(false);
   }
   function handleCategorySelect(categoryId: string) {
-    categoryId === category ? setCategory('') : setCategory(categoryId);
+    setCategory(categoryId);
   }
   return (
     <KeyboardAvoidingView
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
-      <ScrollView>
-        <Background>
+      <Background>
+        <ScrollView>
           <Header title="Agendar partida" />
           <Text
             style={[
@@ -80,7 +83,9 @@ export function AppoitmentCreate(): JSX.Element {
             </RectButton>
             <View style={styles.field}>
               <View>
-                <Text style={styles.label}>Dia e Mês</Text>
+                <Text style={[styles.label, { marginBottom: 12 }]}>
+                  Dia e Mês
+                </Text>
                 <View style={styles.column}>
                   <SmallInput maxLength={2} />
                   <Text style={styles.divider}>/</Text>
@@ -89,7 +94,9 @@ export function AppoitmentCreate(): JSX.Element {
               </View>
 
               <View>
-                <Text style={styles.label}>Hora e Minuto</Text>
+                <Text style={[styles.label, { marginBottom: 12 }]}>
+                  Hora e Minuto
+                </Text>
                 <View style={styles.column}>
                   <SmallInput maxLength={2} />
                   <Text style={styles.divider}>:</Text>
@@ -112,9 +119,9 @@ export function AppoitmentCreate(): JSX.Element {
               <Button title="Agendar" />
             </View>
           </View>
-        </Background>
-      </ScrollView>
-      <ModalView visible={modal}>
+        </ScrollView>
+      </Background>
+      <ModalView visible={modal} closeModal={handleCloseModal}>
         <Guilds handleGuildSelected={handleGuildSelect} />
       </ModalView>
     </KeyboardAvoidingView>

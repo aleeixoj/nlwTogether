@@ -1,4 +1,5 @@
 /* eslint-disable import/extensions */
+import { LinearGradient } from 'expo-linear-gradient';
 // eslint-disable-next-line no-use-before-define
 import React from 'react';
 import { View, Text } from 'react-native';
@@ -8,19 +9,13 @@ import CalendarSvg from '../../assets/calendar.svg';
 import PlayerSvg from '../../assets/player.svg';
 import { theme } from '../../global/styles/theme';
 import { categories } from '../../utils/categories';
+import { GuildProps } from '../Guild';
 import { GuildIcon } from '../GuildIcon';
 import { styles } from './styles';
 
-export interface IGuildProps {
-  id: string;
-  name: string;
-  icon: null;
-  owner: boolean;
-}
-
 export interface IAppointmentsProps {
   id: string;
-  guild: IGuildProps;
+  guild: GuildProps;
   category: string;
   date: string;
   description: string;
@@ -33,11 +28,16 @@ interface IProps extends RectButtonProps {
 export function Appointments({ data, ...rest }: IProps): JSX.Element {
   const [category] = categories.filter((item) => item.id === data.category);
   const { owner } = data.guild;
-  const { primary, on } = theme.colors;
+  const { primary, on, secondary50, secondary70 } = theme.colors;
   return (
     <RectButton {...rest}>
       <View style={styles.container}>
-        <GuildIcon />
+        <LinearGradient
+          colors={[secondary50, secondary70]}
+          style={styles.guildIconContainer}
+        >
+          <GuildIcon />
+        </LinearGradient>
         <View style={styles.content}>
           <View style={styles.header}>
             <Text style={styles.title}>{data.guild.name}</Text>

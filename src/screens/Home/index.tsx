@@ -26,6 +26,7 @@ export function Home(): JSX.Element {
   function handleCategorySelect(categoryId: string) {
     categoryId === category ? setCategory('') : setCategory(categoryId);
   }
+
   const appointments = [
     {
       id: '1',
@@ -68,19 +69,19 @@ export function Home(): JSX.Element {
         setCategory={handleCategorySelect}
       />
 
-      <View style={styles.content}>
-        <ListHeader title="Partidas agendadas" subTitle="Total 6" />
-        <FlatList
-          data={appointments}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <Appointments data={item} onPress={handleAppointmentDetails} />
-          )}
-          style={styles.matches}
-          showsVerticalScrollIndicator={false}
-          ItemSeparatorComponent={() => <ListDivider />}
-        />
-      </View>
+      <ListHeader title="Partidas agendadas" subTitle="Total 6" />
+
+      <FlatList
+        data={appointments}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <Appointments data={item} onPress={handleAppointmentDetails} />
+        )}
+        style={styles.matches}
+        showsVerticalScrollIndicator={false}
+        ItemSeparatorComponent={() => <ListDivider />}
+        contentContainerStyle={{ paddingBottom: 69 }}
+      />
     </Background>
   );
 }

@@ -8,8 +8,8 @@ export const styles = StyleSheet.create({
     marginTop: 100,
   },
   overlay: {
-    backgroundColor: theme.colors.overlay,
     flex: 1,
+    backgroundColor: theme.colors.overlay,
   },
   bar: {
     width: 39,

@@ -11,6 +11,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 
 import { Background } from './src/components/Background';
+import { AuthContext } from './src/context/auth';
 import { Routes } from './src/routes';
 
 export default function App(): JSX.Element {
@@ -27,7 +28,15 @@ export default function App(): JSX.Element {
   return (
     <Background>
       <StatusBar style="light" backgroundColor="transparent" translucent />
-      <Routes />
+      <AuthContext.Provider
+        value={{
+          name: 'Aleixo',
+          email: 'aleeixo@hotmail.com',
+          avatar: 'aleixo.png',
+        }}
+      >
+        <Routes />
+      </AuthContext.Provider>
     </Background>
   );
 }

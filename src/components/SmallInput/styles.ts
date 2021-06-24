@@ -8,6 +8,8 @@ export const styles = StyleSheet.create({
     height: 48,
     backgroundColor: theme.colors.secondary40,
     borderRadius: 8,
+    borderColor: theme.colors.secondary50,
+    borderWidth: 1,
     color: theme.colors.heading,
     fontFamily: theme.fonts.text400,
     fontSize: 13,
