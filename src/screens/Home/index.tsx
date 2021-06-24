@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable import/extensions */
+import { useNavigation } from '@react-navigation/native';
 // eslint-disable-next-line no-use-before-define
 import React, { useState } from 'react';
 import { View, FlatList } from 'react-native';
@@ -15,7 +16,16 @@ import { styles } from './styles';
 
 export function Home(): JSX.Element {
   const [category, setCategory] = useState('');
-
+  const navigation = useNavigation();
+  function handleAppointmentDetails() {
+    navigation.navigate('AppoitmentDetails');
+  }
+  function handleAppointmentCreate() {
+    navigation.navigate('AppoitmentCreate');
+  }
+  function handleCategorySelect(categoryId: string) {
+    categoryId === category ? setCategory('') : setCategory(categoryId);
+  }
   const appointments = [
     {
       id: '1',
@@ -44,14 +54,12 @@ export function Home(): JSX.Element {
         'É hoje que vamos chegar ao challenger sem perder uma partida da MD10',
     },
   ];
-  function handleCategorySelect(categoryId: string) {
-    categoryId === category ? setCategory('') : setCategory(categoryId);
-  }
+
   return (
     <Background>
       <View style={styles.header}>
         <Profile />
-        <ButtonAdd />
+        <ButtonAdd onPress={handleAppointmentCreate} />
       </View>
 
       <CategorySelect
@@ -65,7 +73,9 @@ export function Home(): JSX.Element {
         <FlatList
           data={appointments}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <Appointments data={item} />}
+          renderItem={({ item }) => (
+            <Appointments data={item} onPress={handleAppointmentDetails} />
+          )}
           style={styles.matches}
           showsVerticalScrollIndicator={false}
           ItemSeparatorComponent={() => <ListDivider />}

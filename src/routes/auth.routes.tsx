@@ -4,6 +4,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 
 import { theme } from '../global/styles/theme';
+import { AppoitmentCreate } from '../screens/AppoitmentCreate';
+import { AppoitmentDetails } from '../screens/AppoitmentDetails';
 import { Home } from '../screens/Home';
 import { SignIn } from '../screens/SignIn';
 
@@ -21,6 +23,8 @@ export function AuthRoutes() {
     >
       <Screen name="SignIn" component={SignIn} />
       <Screen name="Home" component={Home} />
+      <Screen name="AppoitmentDetails" component={AppoitmentDetails} />
+      <Screen name="AppoitmentCreate" component={AppoitmentCreate} />
     </Navigator>
   );
 }
