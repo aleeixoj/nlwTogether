@@ -4,8 +4,6 @@ import { TextInput, TextInputProps } from 'react-native';
 
 import { styles } from './styles';
 
-export function SmallInput({ ...rest }: TextInputProps): JSX.Element {
-  return (
-    <TextInput style={styles.container} {...rest} keyboardType="numeric" />
-  );
+export function TextArea({ ...rest }: TextInputProps): JSX.Element {
+  return <TextInput style={styles.container} {...rest} />;
 }
